@@ -1,0 +1,142 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body, #root {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mejoras para touch devices */
+@media (hover: none) {
+    button, a {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Container responsive */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 2rem;
+    }
+}
+
+/* Botones responsive */
+.btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    padding: .7rem 1rem;
+    border-radius: .6rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-align: center;
+    display: inline-block;
+    min-height: 44px; /* Tamaño mínimo para touch */
+    line-height: 1.2;
+}
+
+.btn:hover {
+    filter: brightness(0.95);
+    transform: translateY(-1px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--primary);
+}
+
+.btn-sm {
+    padding: .5rem .75rem;
+    border-radius: .5rem;
+    font-size: 0.85rem;
+    min-height: 36px;
+}
+
+/* Responsive button sizing */
+@media (max-width: 767px) {
+    .btn {
+        padding: .8rem 1rem;
+        width: 100%; /* Botones full-width en móvil cuando está solo */
+    }
+
+    .hero-cta .btn {
+        width: auto; /* Excepto en hero donde queremos que sean del contenido */
+        min-width: 140px;
+    }
+
+    .btn-sm {
+        width: auto;
+        min-width: auto;
+    }
+}
+
+/* Utilidades */
+.muted {
+    color: var(--muted);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* Espaciado responsive */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+.p-3 { padding: 1.5rem; }
+
+/* Flex utilities */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 0.5rem; }
+.gap-
