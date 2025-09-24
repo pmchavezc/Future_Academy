@@ -1,7 +1,7 @@
 .dash-shell {
     display: grid;
-    grid-template-columns: 260px 1fr;
-    min-height: 100dvh;
+    grid-template-columns: 1200px 1fr;
+    min-height: 50dvh;
 }
 
 .dash-aside {
@@ -10,7 +10,7 @@
     padding: 1rem;
     position: sticky;
     top: 0;
-    height: 100dvh;
+    height: 35dvh;
     overflow-y: auto;
 }
 
@@ -74,15 +74,30 @@
 .spacer { flex: 1; }
 
 .dash-content {
-    padding: 1rem;
+    padding: 2rem;
     overflow-x: auto;
+    max-width: 1200px;
+    margin: 0 auto; /* Centrar el contenido */
+    width: 100%;
+}
+
+/* Títulos centrados */
+.dash-content h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--text);
+    font-size: 1.75rem;
 }
 
 /* Cards responsive */
 .cards-3 {
     display: grid;
-    gap: 1rem;
-    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 /* Tabla responsive */
@@ -114,12 +129,25 @@
 /* Tabla wrapper para scroll horizontal */
 .table-wrapper {
     overflow-x: auto;
-    margin: 0 -1rem; /* Compensar padding del container */
-    padding: 0 1rem;
+    margin: 2rem 0; /* Margin vertical */
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centrar la tabla */
+}
+
+.table-wrapper .tbl {
+    min-width: 600px; /* Ancho mínimo para que se vea bien */
+    width: 100%;
+    max-width: 800px; /* Ancho máximo para centrar mejor */
 }
 
 /* Lista responsive */
-.list { display: grid; gap: .6rem; }
+.list {
+    display: grid;
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto; /* Centrar la lista */
+}
 
 .list-item {
     display: grid;
@@ -224,7 +252,13 @@
     }
 
     .dash-content {
-        padding: 0.75rem;
+        padding: 1rem;
+        text-align: center; /* Centrar contenido en móvil */
+    }
+
+    .dash-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
     }
 
     /* Cards en móvil */
@@ -278,7 +312,8 @@
     }
 
     .cards-3 {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
     }
 
     .list-item {
@@ -291,11 +326,20 @@
 @media (min-width: 1024px) {
     .cards-3 {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
     }
 
     .list-item {
         grid-template-columns: 1fr auto auto;
         align-items: center;
+    }
+}
+
+/* DESKTOP GRANDE (1400px y más) */
+@media (min-width: 1400px) {
+    .cards-3 {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
     }
 }
 

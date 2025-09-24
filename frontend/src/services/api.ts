@@ -1,4 +1,3 @@
-// src/services/api.ts
 const API_BASE_URL = 'http://localhost:8080/api';
 
 // Tipos
@@ -59,12 +58,42 @@ class ApiService {
         return headers;
     }
 
-    private async handleResponse<T>(response: Response): Promise<T> {
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(`HTTP ${response.status}: ${errorText}`);
+    private getHeadersForFiles(includeAuth = false): HeadersInit {
+        const headers: HeadersInit = {};
+
+        if (includeAuth) {
+            const user = JSON.parse(localStorage.getItem('fa.user') || '{}');
+            if (user.email) {
+                headers['X-Alumno-Email'] = user.email;
+            }
         }
-        return response.json();
+
+        return headers;
+    }
+
+    private async handleResponse<T>(response: Response): Promise<T> {
+        console.log(`Response status: ${response.status} for URL: ${response.url}`);
+
+        if (!response.ok) {
+            let errorMessage = `HTTP ${response.status}`;
+
+            try {
+                const errorText = await response.text();
+                console.error('Response error:', errorText);
+                errorMessage += `: ${errorText}`;
+            } catch (e) {
+                console.error('Could not parse error response:', e);
+            }
+
+            throw new Error(errorMessage);
+        }
+
+        try {
+            return response.json();
+        } catch (e) {
+            console.error('Could not parse JSON response:', e);
+            throw new Error('Invalid JSON response');
+        }
     }
 
     // Autenticación
@@ -93,7 +122,7 @@ class ApiService {
         }
     }
 
-    // Obtener cursos del alumno
+    // Obtener cursos del alumno (inscritos)
     async getCursos(): Promise<Curso[]> {
         try {
             const response = await fetch(`${API_BASE_URL}/cursos/mios`, {
@@ -104,6 +133,36 @@ class ApiService {
             return this.handleResponse<Curso[]>(response);
         } catch (error) {
             console.error('Error getting cursos:', error);
+            throw error;
+        }
+    }
+
+    // Obtener cursos disponibles (no inscritos)
+    async getCursosDisponibles(): Promise<Curso[]> {
+        try {
+            const response = await fetch(`${API_BASE_URL}/inscripciones/disponibles`, {
+                method: 'GET',
+                headers: this.getHeaders(true),
+            });
+
+            return this.handleResponse<Curso[]>(response);
+        } catch (error) {
+            console.error('Error getting cursos disponibles:', error);
+            throw error;
+        }
+    }
+
+    // Inscribirse a un curso
+    async inscribirseACurso(cursoId: number): Promise<{message: string}> {
+        try {
+            const response = await fetch(`${API_BASE_URL}/inscripciones/inscribir/${cursoId}`, {
+                method: 'POST',
+                headers: this.getHeaders(true),
+            });
+
+            return this.handleResponse<{message: string}>(response);
+        } catch (error) {
+            console.error('Error inscribiéndose al curso:', error);
             throw error;
         }
     }
@@ -134,6 +193,26 @@ class ApiService {
             return this.handleResponse<Tarea[]>(response);
         } catch (error) {
             console.error('Error getting tareas:', error);
+            throw error;
+        }
+    }
+
+    // Subir archivo de tarea
+    async subirTarea(archivo: File, tareaId: number): Promise<{message: string, nombreArchivo: string}> {
+        try {
+            const formData = new FormData();
+            formData.append('archivo', archivo);
+            formData.append('tareaId', tareaId.toString());
+
+            const response = await fetch(`${API_BASE_URL}/archivos/subir-tarea`, {
+                method: 'POST',
+                headers: this.getHeadersForFiles(true),
+                body: formData,
+            });
+
+            return this.handleResponse<{message: string, nombreArchivo: string}>(response);
+        } catch (error) {
+            console.error('Error subiendo archivo:', error);
             throw error;
         }
     }

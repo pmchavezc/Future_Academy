@@ -1,23 +1,56 @@
+import { useEffect, useState } from 'react';
+import { api, type Curso } from '../../services/api';
+
 export default function ClasesPage() {
-    const clases = [
-        { codigo: 'MAT101', nombre: 'Matemática I', horario: 'Lun-Mie 8:00–9:30', docente: 'Lic. Gómez' },
-        { codigo: 'LEN102', nombre: 'Comunicación', horario: 'Mar-Jue 10:00–11:30', docente: 'Licda. Pérez' },
-        { codigo: 'CIE103', nombre: 'Ciencias', horario: 'Vie 9:00–11:00', docente: 'Ing. Morales' },
-    ];
+    const [clases, setClases] = useState<Curso[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchClases = async () => {
+            try {
+                const data = await api.getCursos(); // Solo cursos inscritos
+                setClases(data);
+            } catch (error) {
+                setError(error instanceof Error ? error.message : 'Error cargando clases');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchClases();
+    }, []);
+
+    if (loading) return <div>Cargando clases...</div>;
+    if (error) return <div style={{ color: '#ef4444' }}>Error: {error}</div>;
+
     return (
         <>
-            <h2>Mis clases</h2>
-            <div className="cards-3">
-                {clases.map(c => (
-                    <article key={c.codigo} className="card">
-                        <h3>{c.nombre}</h3>
-                        <p className="muted">{c.codigo}</p>
-                        <p>Horario: {c.horario}</p>
-                        <p>Docente: {c.docente}</p>
-                        <button className="btn btn-sm">Ver Aula Virtual</button>
-                    </article>
-                ))}
-            </div>
+            <h2>Mis Clases Inscritas</h2>
+            {clases.length === 0 ? (
+                <div style={{
+                    textAlign: 'center',
+                    padding: '2rem',
+                    background: 'var(--card)',
+                    borderRadius: '0.5rem',
+                    border: '1px solid var(--soft)'
+                }}>
+                    <p>No tienes clases inscritas aún.</p>
+                    <p className="muted">Ve a "Inscripciones" para inscribirte a nuevos cursos.</p>
+                </div>
+            ) : (
+                <div className="cards-3">
+                    {clases.map(c => (
+                        <article key={c.id} className="card">
+                            <h3>{c.nombre}</h3>
+                            <p className="muted">{c.codigo}</p>
+                            <p><strong>Horario:</strong> {c.horario}</p>
+                            <p><strong>Docente:</strong> {c.docente}</p>
+                            <button className="btn btn-sm">Ver Aula Virtual</button>
+                        </article>
+                    ))}
+                </div>
+            )}
         </>
     );
 }
