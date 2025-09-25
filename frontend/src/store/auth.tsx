@@ -1,15 +1,14 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { api, type LoginRequest, type LoginResponse } from '../services/api';
 
 type User = {
     id: number;
     nombre: string;
     email: string;
     rol: string;
-};
+} | null;
 
 type AuthContextType = {
-    user: User | null;
+    user: User;
     login: (email: string, password: string) => Promise<void>;
     logout: () => void;
     loading: boolean;
@@ -17,69 +16,84 @@ type AuthContextType = {
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
+const LS_KEY = 'fa.user';
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-    const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState(false);
+    const [user, setUser] = useState<User>(null);
+    const [loading, setLoading] = useState(true);      // <- cambia: inicia en true
     const [error, setError] = useState<string | null>(null);
 
-    // Cargar sesión de localStorage al iniciar
+    // Hidratar sesión desde localStorage
     useEffect(() => {
-        const raw = localStorage.getItem('fa.user');
-        if (raw) {
-            try {
-                const userData = JSON.parse(raw);
-                setUser(userData);
-            } catch (e) {
-                console.error('Error parsing stored user data:', e);
-                localStorage.removeItem('fa.user');
+        try {
+            const raw = localStorage.getItem(LS_KEY);
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                if (parsed?.email) setUser(parsed);
             }
+        } catch {
+            localStorage.removeItem(LS_KEY);
+        } finally {
+            setLoading(false); // <- importante
         }
+    }, []);
+
+    // Mantener sesión entre pestañas (opcional pero útil)
+    useEffect(() => {
+        const onStorage = (e: StorageEvent) => {
+            if (e.key !== LS_KEY) return;
+            if (e.newValue) {
+                try {
+                    setUser(JSON.parse(e.newValue));
+                } catch {
+                    setUser(null);
+                }
+            } else {
+                setUser(null);
+            }
+        };
+        window.addEventListener('storage', onStorage);
+        return () => window.removeEventListener('storage', onStorage);
     }, []);
 
     const login = async (email: string, password: string) => {
         setLoading(true);
         setError(null);
-
         try {
-            const credentials: LoginRequest = {
-                email,
-                contrasena: password
+            // tu llamada real:
+            // const { api } = await import('../services/api');
+            // const resp = await api.login({ email, contrasena: password });
+
+            // Simulación mínima usando tu forma actual:
+            const { api } = await import('../services/api');
+            const resp = await api.login({ email, contrasena: password });
+
+            const userData = {
+                id: resp.alumnoId,
+                nombre: resp.nombre,
+                email: resp.email,
+                rol: resp.rol,
             };
-
-            const response: LoginResponse = await api.login(credentials);
-
-            const userData: User = {
-                id: response.alumnoId,
-                nombre: response.nombre,
-                email: response.email,
-                rol: response.rol
-            };
-
             setUser(userData);
-            localStorage.setItem('fa.user', JSON.stringify(userData));
-        } catch (error) {
-            const message = error instanceof Error ? error.message : 'Error desconocido';
-            setError(message);
-            throw error; // Re-lanzamos el error para que el componente pueda manejarlo
+            localStorage.setItem(LS_KEY, JSON.stringify(userData));
+        } catch (err: any) {
+            setError(err?.message ?? 'Error desconocido');
+            throw err;
         } finally {
             setLoading(false);
         }
     };
 
     const logout = () => {
+        localStorage.removeItem(LS_KEY);
         setUser(null);
         setError(null);
-        localStorage.removeItem('fa.user');
     };
 
-    const value = useMemo(() => ({
-        user,
-        login,
-        logout,
-        loading,
-        error
-    }), [user, loading, error]);
+    const value = useMemo(
+        () => ({ user, login, logout, loading, error }),
+        [user, loading, error]
+    );
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
