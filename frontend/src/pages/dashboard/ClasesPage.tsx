@@ -9,7 +9,7 @@ export default function ClasesPage() {
     useEffect(() => {
         const fetchClases = async () => {
             try {
-                const data = await api.getCursos(); // Solo cursos inscritos
+                const data = await api.getCursos();
                 setClases(data);
             } catch (error) {
                 setError(error instanceof Error ? error.message : 'Error cargando clases');
@@ -28,15 +28,9 @@ export default function ClasesPage() {
         <>
             <h2>Mis Clases Inscritas</h2>
             {clases.length === 0 ? (
-                <div style={{
-                    textAlign: 'center',
-                    padding: '2rem',
-                    background: 'var(--card)',
-                    borderRadius: '0.5rem',
-                    border: '1px solid var(--soft)'
-                }}>
+                <div className="empty-state">
                     <p>No tienes clases inscritas aún.</p>
-                    <p className="muted">Ve a "Inscripciones" para inscribirte a nuevos cursos.</p>
+                    <p>Ve a "Inscripciones" para inscribirte a nuevos cursos.</p>
                 </div>
             ) : (
                 <div className="cards-3">
@@ -46,7 +40,6 @@ export default function ClasesPage() {
                             <p className="muted">{c.codigo}</p>
                             <p><strong>Horario:</strong> {c.horario}</p>
                             <p><strong>Docente:</strong> {c.docente}</p>
-                            <button className="btn btn-sm">Ver Aula Virtual</button>
                         </article>
                     ))}
                 </div>

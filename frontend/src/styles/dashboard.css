@@ -1,21 +1,36 @@
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+
+/* Variables esperadas (usa tus colores del tema) */
+/*
+:root{
+  --text:#e5e7eb; --soft:#1f2937; --primary:#22d3ee;
+  --panel:#0b1220; --card:#0e1526;
+}
+*/
+
+/* ===== Layout base ===== */
 .dash-shell {
     display: grid;
-    grid-template-columns: 1200px 1fr;
-    min-height: 50dvh;
+    grid-template-columns: 260px 1fr;   /* Sidebar razonable en desktop */
+    min-height: 100dvh;
 }
 
+/* ===== Sidebar ===== */
 .dash-aside {
     background: #0e1526;
     border-right: 1px solid #0b1220;
     padding: 1rem;
     position: sticky;
     top: 0;
-    height: 35dvh;
+    height: 100dvh;
     overflow-y: auto;
+    color: var(--text);
 }
 
 .dash-brand {
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 1rem;
     font-size: 1.1rem;
     text-align: center;
@@ -27,7 +42,8 @@
     padding: .6rem .7rem;
     border-radius: .6rem;
     color: var(--text);
-    transition: all 0.2s ease;
+    text-decoration: none;
+    transition: background .2s ease, color .2s ease, border-left-color .2s ease;
 }
 
 .dash-nav a.active {
@@ -40,20 +56,29 @@
     background: rgba(255, 255, 255, 0.05);
 }
 
+/* ===== Main + Topbar ===== */
 .dash-main {
     display: grid;
     grid-template-rows: auto 1fr;
     min-width: 0;
+    background: #0a0f1d;
 }
 
 .dash-topbar {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: .75rem 1rem;
+    gap: .75rem;
+    padding: .75rem clamp(12px, 3vw, 32px); /* en vez de 10rem */
     border-bottom: 1px solid #0b1220;
     background: var(--panel);
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* evita desbordes en móvil */
+}
+
+.dash-title {
+    font-size: clamp(1rem, 2.2vw, 1.5rem);
+    font-weight: 700;
+    margin: 0;
+    color: var(--text);
 }
 
 .dash-user {
@@ -61,6 +86,7 @@
     align-items: center;
     gap: 0.5rem;
     flex-wrap: wrap;
+    color: var(--text);
 }
 
 .chip {
@@ -74,14 +100,17 @@
 .spacer { flex: 1; }
 
 .dash-content {
-    padding: 2rem;
+    padding: clamp(12px, 2.5vw, 24px);
     overflow-x: auto;
     max-width: 1200px;
-    margin: 0 auto; /* Centrar el contenido */
-    width: 100%;
+    margin: 0 auto;
+    width: 100%;         /* importante: no uses 50dvw */
+    color: var(--text);
 }
 
-/* Títulos centrados */
+/* ===== Componentes comunes ===== */
+
+/* Títulos dentro del contenido (si los usas) */
 .dash-content h2 {
     text-align: center;
     margin-bottom: 2rem;
@@ -122,23 +151,21 @@
     font-weight: 600;
 }
 
-.tbl tfoot td {
-    font-weight: 700;
-}
+.tbl tfoot td { font-weight: 700; }
 
 /* Tabla wrapper para scroll horizontal */
 .table-wrapper {
     overflow-x: auto;
-    margin: 2rem 0; /* Margin vertical */
+    margin: 2rem 0;
     padding: 0;
     display: flex;
-    justify-content: center; /* Centrar la tabla */
+    justify-content: center;
 }
 
 .table-wrapper .tbl {
-    min-width: 600px; /* Ancho mínimo para que se vea bien */
+    min-width: 600px;
     width: 100%;
-    max-width: 800px; /* Ancho máximo para centrar mejor */
+    max-width: 800px;
 }
 
 /* Lista responsive */
@@ -146,7 +173,7 @@
     display: grid;
     gap: 1rem;
     max-width: 900px;
-    margin: 0 auto; /* Centrar la lista */
+    margin: 0 auto;
 }
 
 .list-item {
@@ -184,164 +211,9 @@
 .badge.ok { background: rgba(34,197,94,.15); color: #86efac; }
 .badge.warn { background: rgba(234,179,8,.15); color: #fde68a; }
 
-/* Botones responsive */
-.btn {
-    font-size: 0.875rem;
-    padding: 0.5rem 0.75rem;
-}
-
-.btn-sm {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.6rem;
-}
-
-/* MEDIA QUERIES PARA MÓVIL */
-@media (max-width: 767px) {
-    /* Layout móvil: sidebar oculto por defecto */
-    .dash-shell {
-        grid-template-columns: 1fr;
-        position: relative;
-    }
-
-    .dash-aside {
-        position: fixed;
-        top: 0;
-        left: -260px; /* Oculto por defecto */
-        width: 260px;
-        height: 100vh;
-        z-index: 1000;
-        transition: left 0.3s ease;
-    }
-
-    .dash-aside.open {
-        left: 0; /* Mostrar cuando tenga clase 'open' */
-    }
-
-    /* Overlay para cerrar sidebar */
-    .dash-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 999;
-        display: none;
-    }
-
-    .dash-overlay.show {
-        display: block;
-    }
-
-    .dash-main {
-        width: 100%;
-    }
-
-    .dash-topbar {
-        padding: .75rem 0.5rem;
-        gap: 0.5rem;
-    }
-
-    .dash-user {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .dash-user small {
-        font-size: 0.75rem;
-    }
-
-    .dash-content {
-        padding: 1rem;
-        text-align: center; /* Centrar contenido en móvil */
-    }
-
-    .dash-content h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-
-    /* Cards en móvil */
-    .cards-3 {
-        grid-template-columns: 1fr;
-    }
-
-    /* Tabla en móvil */
-    .tbl {
-        font-size: 0.8rem;
-    }
-
-    .tbl th, .tbl td {
-        padding: 0.5rem 0.25rem;
-    }
-
-    /* Lista items en móvil */
-    .list-item {
-        padding: 0.75rem;
-    }
-
-    .list-item-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .list-item-actions {
-        width: 100%;
-        justify-content: space-between;
-    }
-}
-
-/* TABLET (768px - 1023px) */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .dash-shell {
-        grid-template-columns: 200px 1fr; /* Sidebar más estrecho */
-    }
-
-    .dash-aside {
-        width: 200px;
-        padding: 0.75rem;
-    }
-
-    .dash-brand {
-        font-size: 1rem;
-    }
-
-    .dash-nav a {
-        padding: 0.5rem;
-        font-size: 0.9rem;
-    }
-
-    .cards-3 {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
-    }
-
-    .list-item {
-        grid-template-columns: 1fr auto auto;
-        align-items: center;
-    }
-}
-
-/* DESKTOP (1024px y más) */
-@media (min-width: 1024px) {
-    .cards-3 {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-    }
-
-    .list-item {
-        grid-template-columns: 1fr auto auto;
-        align-items: center;
-    }
-}
-
-/* DESKTOP GRANDE (1400px y más) */
-@media (min-width: 1400px) {
-    .cards-3 {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 1200px;
-    }
-}
+/* Botones (tú ya los tienes, esto es por si faltan) */
+.btn { font-size: 0.875rem; padding: 0.5rem 0.75rem; }
+.btn-sm { font-size: 0.8rem; padding: 0.4rem 0.6rem; }
 
 /* Botón hamburguesa para móvil */
 .menu-toggle {
@@ -354,8 +226,112 @@
     padding: 0.25rem;
 }
 
+/* ===== Overlay móvil ===== */
+.dash-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.5);
+    z-index: 999;
+    display: none;
+}
+
+.dash-overlay.show { display: block; }
+
+/* ===== Mobile (<= 767px) ===== */
 @media (max-width: 767px) {
-    .menu-toggle {
-        display: block;
+    .menu-toggle { display: block; }
+
+    .dash-shell {
+        grid-template-columns: 1fr;
+        position: relative;
+    }
+
+    .dash-aside {
+        position: fixed;
+        top: 0;
+        left: -260px; /* oculto */
+        width: 260px;
+        height: 100vh;
+        z-index: 1000;
+        transition: left .3s ease;
+    }
+    .dash-aside.open { left: 0; }
+
+    .dash-main { width: 100%; }
+
+    .dash-topbar {
+        padding: .75rem .5rem;
+        gap: .5rem;
+    }
+
+    .dash-user {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .dash-user small { font-size: .75rem; }
+
+    .dash-content {
+        padding: 1rem;
+        text-align: center; /* opcional */
+    }
+
+    .dash-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .cards-3 { grid-template-columns: 1fr; }
+
+    .tbl { font-size: 0.8rem; }
+    .tbl th, .tbl td { padding: 0.5rem 0.25rem; }
+
+    .list-item { padding: 0.75rem; }
+    .list-item-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .list-item-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+/* ===== Tablet (768px–1023px) ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .dash-shell { grid-template-columns: 220px 1fr; }
+    .dash-aside { width: 220px; padding: 0.75rem; }
+    .dash-brand { font-size: 1rem; }
+    .dash-nav a { padding: 0.5rem; font-size: 0.9rem; }
+
+    .cards-3 {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+
+    .list-item {
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+    }
+}
+
+/* ===== Desktop (>= 1024px) ===== */
+@media (min-width: 1024px) {
+    .cards-3 {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+
+    .list-item {
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+    }
+}
+
+/* ===== Desktop grande (>= 1400px) ===== */
+@media (min-width: 1400px) {
+    .cards-3 {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
     }
 }

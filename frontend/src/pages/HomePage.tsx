@@ -19,17 +19,15 @@ export default function HomePage() {
             <div className="brand">
               <div className="brand-logo" aria-hidden>🎓</div>
               <div>
-                <div className="brand-name">Institución Future Academy</div>
+                <div className="brand-name">Future Academy</div>
                 <div className="brand-sub">Formando líderes con valores</div>
               </div>
             </div>
-
             <nav className="nav">
               <a href="#programas">Programas</a>
-              <a href="#valores">Valores</a>
+              <a href="#mision-vision">Misión & Visión</a>
               <a href="#noticias">Noticias</a>
-              <a href="#contacto" className="btn btn-sm btn-ghost">Contacto</a>
-              <Link to="/login" className="btn btn-sm">Login</Link>
+              <Link to="/login" className="btn btn-sm">Portal Estudiantil</Link>
             </nav>
           </div>
         </header>
@@ -44,8 +42,7 @@ export default function HomePage() {
                 con metodologías activas, tecnología y comunidad.
               </p>
               <div className="hero-cta">
-                <a href="#programas" className="btn">Conoce nuestros programas</a>
-                <Link to="/login" className="btn btn-outline">Portal Estudiantil</Link>
+                <Link to="/login" className="btn">Acceder al Portal</Link>
               </div>
             </div>
             <div className="hero-illus" aria-hidden>
@@ -60,27 +57,64 @@ export default function HomePage() {
             <h2 className="section-title">Programas Académicos</h2>
             <div className="grid cards">
               <article className="card">
-                <h3>Preprimaria</h3>
-                <p>Aprendizaje lúdico, desarrollo socioemocional y psicomotricidad.</p>
+                <div className="program-image">
+                  <img
+                      src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop&crop=center"
+                      alt="Estudiantes de básicos en clase"
+                      style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.5rem' }}
+                  />
+                </div>
+                <div className="card-content">
+                  <h3>Básicos</h3>
+                  <p>Pensamiento crítico, laboratorios y proyectos interdisciplinarios para formar bases sólidas.</p>
+                </div>
               </article>
               <article className="card">
-                <h3>Primaria</h3>
-                <p>Fundamentos sólidos en lectoescritura, matemática y ciencias.</p>
-              </article>
-              <article className="card">
-                <h3>Básicos</h3>
-                <p>Pensamiento crítico, laboratorios y proyectos interdisciplinarios.</p>
-              </article>
-              <article className="card">
-                <h3>Diversificado</h3>
-                <p>Orientaciones técnicas y preparación para la universidad.</p>
+                <div className="program-image">
+                  <img
+                      src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&h=250&fit=crop&crop=center"
+                      alt="Estudiantes de diversificado"
+                      style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.5rem' }}
+                  />
+                </div>
+                <div className="card-content">
+                  <h3>Diversificado</h3>
+                  <p>Orientaciones técnicas y preparación universitaria con enfoque en competencias del siglo XXI.</p>
+                </div>
               </article>
             </div>
           </div>
         </section>
 
+        {/* MISIÓN Y VISIÓN */}
+        <section id="mision-vision" className="section alt">
+          <div className="container">
+            <h2 className="section-title">Nuestra Filosofía</h2>
+            <div className="grid mission-vision">
+              <div className="mission-card">
+                <div className="mv-icon">🎯</div>
+                <h3>Misión</h3>
+                <p>
+                  Formar estudiantes integrales con excelencia académica, valores sólidos y competencias
+                  del siglo XXI, preparándolos para ser líderes transformadores en una sociedad global
+                  y tecnológicamente avanzada.
+                </p>
+              </div>
+              <div className="vision-card">
+                <div className="mv-icon">🌟</div>
+                <h3>Visión</h3>
+                <p>
+                  Ser reconocidos como la institución educativa líder en Guatemala, destacando por
+                  nuestra innovación pedagógica, formación en valores y el éxito de nuestros graduados
+                  en universidades y en la vida profesional.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* VALORES */}
-        <section id="valores" className="section alt">
+        <section id="valores" className="section">
           <div className="container">
             <h2 className="section-title">¿Por qué elegirnos?</h2>
             <div className="grid features">
@@ -108,40 +142,66 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* NOTICIAS */}
-        <section id="noticias" className="section">
+        {/* NOTICIAS CON IMÁGENES */}
+        <section id="noticias" className="section alt">
           <div className="container">
             <h2 className="section-title">Noticias y Eventos</h2>
             <div className="grid news">
               <article className="news-item">
-                <h4>Semana de Ciencia</h4>
-                <p>Exposición de proyectos STEAM del 14 al 18 de octubre.</p>
+                <div className="news-image">
+                  <img
+                      src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=200&fit=crop&crop=center"
+                      alt="Feria de ciencias"
+                      style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '0.5rem 0.5rem 0 0' }}
+                  />
+                </div>
+                <div className="news-content">
+                  <h4>Semana de Ciencia</h4>
+                  <p>Exposición de proyectos STEAM del 14 al 18 de octubre.</p>
+                </div>
               </article>
               <article className="news-item">
-                <h4>Open House</h4>
-                <p>Conoce nuestras instalaciones y equipo docente — 26 de octubre.</p>
+                <div className="news-image">
+                  <img
+                      src="https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=200&fit=crop&crop=center"
+                      alt="Instalaciones del colegio"
+                      style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '0.5rem 0.5rem 0 0' }}
+                  />
+                </div>
+                <div className="news-content">
+                  <h4>Open House</h4>
+                  <p>Conoce nuestras instalaciones y equipo docente - 26 de octubre.</p>
+                </div>
               </article>
               <article className="news-item">
-                <h4>Campeonato Intercolegial</h4>
-                <p>Felicitaciones al equipo por su destacada participación.</p>
+                <div className="news-image">
+                  <img
+                      src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&h=200&fit=crop&crop=center"
+                      alt="Campeonato deportivo"
+                      style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '0.5rem 0.5rem 0 0' }}
+                  />
+                </div>
+                <div className="news-content">
+                  <h4>Campeonato Intercolegial</h4>
+                  <p>Felicitaciones al equipo por su destacada participación.</p>
+                </div>
               </article>
             </div>
           </div>
         </section>
 
         {/* CONTACTO */}
-        <section id="contacto" className="section alt">
+        <section id="contacto" className="section">
           <div className="container contact">
             <div>
               <h2 className="section-title">Contacto</h2>
               <ul className="contact-list">
                 <li>📍 5a. Avenida 10-25, Zona 1, Ciudad</li>
                 <li>☎️ (502) 5555-5555</li>
-                <li>✉️ admisiones@institucion.edu</li>
-                <li>🕘 Lun–Vie: 7:00–15:00</li>
+                <li>✉️ admisiones@futureacademy.edu</li>
+                <li>🕘 Lun-Vie: 7:00-15:00</li>
               </ul>
             </div>
-
             <form onSubmit={onSubmit} className="contact-form">
               <label>
                 Nombre
@@ -179,11 +239,11 @@ export default function HomePage() {
         {/* FOOTER */}
         <footer className="site-footer">
           <div className="container footer-inner">
-            <span>© {new Date().getFullYear()} Institución Educativa</span>
+            <span>© {new Date().getFullYear()} Future Academy</span>
             <nav className="footer-nav">
-              <a href="#">Facebook</a>
-              <a href="#">Instagram</a>
-              <a href="#">YouTube</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">Facebook</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="#" target="_blank" rel="noopener noreferrer">YouTube</a>
             </nav>
           </div>
         </footer>
