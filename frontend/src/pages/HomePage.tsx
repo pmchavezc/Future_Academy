@@ -41,9 +41,6 @@ export default function HomePage() {
                 Acompañamos a cada estudiante en su camino académico y humano,
                 con metodologías activas, tecnología y comunidad.
               </p>
-              <div className="hero-cta">
-                <Link to="/login" className="btn">Acceder al Portal</Link>
-              </div>
             </div>
             <div className="hero-illus" aria-hidden>
               📚 🧪 💻 ⚽
