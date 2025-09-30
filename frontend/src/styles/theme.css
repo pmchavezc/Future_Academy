@@ -1,12 +1,12 @@
 :root{
-    --primary: #0ea5e9;   /* cyan-500 */
-    --primary-700: #0369a1;
-    --accent: #22c55e;    /* green-500 */
-    --bg: #0b1220;        /* fondo oscuro azulado */
-    --panel: #0f172a;     /* slate-900 */
-    --card: #111827;      /* gray-900 */
-    --text: #e5e7eb;      /* gray-200 */
-    --muted: #94a3b8;     /* slate-400 */
-    --soft: #1f2937;      /* gray-800 */
-    --ring: rgba(14,165,233,0.35);
+    --primary: #212321;   /* cyan-500 */
+    --bg: radial-gradient(1200px 600px at 10% 10%, rgb(129, 131, 114), transparent 60%),
+    radial-gradient(1200px 600px at 90% 10%, rgb(183, 148, 123), transparent 60%),
+    linear-gradient(180deg, #a2adc2 0%, #4f5a6e 60%, #131c2d 100%);;        /* fondo oscuro azulado */
+    --panel: #858f85;     /* slate-900 */
+    --card: rgba(140, 129, 129, 0.8);      /* gray-900 */
+    --text: black;      /* gray-200 */
+    --muted: black;     /* slate-400 */
+    --soft: #130f0f;      /* gray-800 */
+    --ring: rgb(150, 132, 132);
 }

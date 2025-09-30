@@ -16,8 +16,4 @@ public class Tarea {
     private String titulo;
     private LocalDate fechaEntrega;
 
-    @Enumerated(EnumType.STRING)
-    private Estado estado;
-
-    public enum Estado { PENDIENTE, ENVIADO }
 }

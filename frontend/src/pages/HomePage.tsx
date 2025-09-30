@@ -17,7 +17,7 @@ export default function HomePage() {
         <header className="site-header">
           <div className="container header-inner">
             <div className="brand">
-              <div className="brand-logo" aria-hidden>🎓</div>
+              <div className="brand-logo" aria-hidden>  <img src="src/imagenes/logotipo.jpg"  height={60}  className="h-8 w-auto" /></div>
               <div>
                 <div className="brand-name">Future Academy</div>
                 <div className="brand-sub">Formando líderes con valores</div>
@@ -42,9 +42,6 @@ export default function HomePage() {
                 con metodologías activas, tecnología y comunidad.
               </p>
             </div>
-            <div className="hero-illus" aria-hidden>
-              📚 🧪 💻 ⚽
-            </div>
           </div>
         </section>
 
@@ -56,7 +53,7 @@ export default function HomePage() {
               <article className="card">
                 <div className="program-image">
                   <img
-                      src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=250&fit=crop&crop=center"
+                      src="/src/imagenes/basicos.jpg"
                       alt="Estudiantes de básicos en clase"
                       style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.5rem' }}
                   />
@@ -69,7 +66,7 @@ export default function HomePage() {
               <article className="card">
                 <div className="program-image">
                   <img
-                      src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=400&h=250&fit=crop&crop=center"
+                      src="/src/imagenes/diversificados.jpg"
                       alt="Estudiantes de diversificado"
                       style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.5rem' }}
                   />
@@ -89,7 +86,6 @@ export default function HomePage() {
             <h2 className="section-title">Nuestra Filosofía</h2>
             <div className="grid mission-vision">
               <div className="mission-card">
-                <div className="mv-icon">🎯</div>
                 <h3>Misión</h3>
                 <p>
                   Formar estudiantes integrales con excelencia académica, valores sólidos y competencias
@@ -98,7 +94,6 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="vision-card">
-                <div className="mv-icon">🌟</div>
                 <h3>Visión</h3>
                 <p>
                   Ser reconocidos como la institución educativa líder en Guatemala, destacando por
@@ -116,24 +111,19 @@ export default function HomePage() {
             <h2 className="section-title">¿Por qué elegirnos?</h2>
             <div className="grid features">
               <div className="feature">
-                <div className="feature-ico">👩‍🏫</div>
+                <img src="/src/imagenes/maestros.jpg"/>
                 <h4>Docentes comprometidos</h4>
                 <p>Acompañamiento cercano y actualización pedagógica constante.</p>
               </div>
               <div className="feature">
-                <div className="feature-ico">🧬</div>
+                <img src="/src/imagenes/laboratorios.jpg"/>
                 <h4>Laboratorios y tecnología</h4>
                 <p>Espacios de ciencias, robótica y aulas digitales.</p>
               </div>
               <div className="feature">
-                <div className="feature-ico">🤝</div>
+                <img src="/src/imagenes/comunidad_estudiantil.jpg"/>
                 <h4>Comunidad y valores</h4>
                 <p>Proyectos solidarios, deportes y artes para crecer en equipo.</p>
-              </div>
-              <div className="feature">
-                <div className="feature-ico">🛡️</div>
-                <h4>Ambiente seguro</h4>
-                <p>Protocolos de seguridad, orientación y bienestar estudiantil.</p>
               </div>
             </div>
           </div>
@@ -147,40 +137,41 @@ export default function HomePage() {
               <article className="news-item">
                 <div className="news-image">
                   <img
-                      src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&h=200&fit=crop&crop=center"
+                      src="/src/imagenes/ciencia_estudiantil.jpg"
                       alt="Feria de ciencias"
                       style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '0.5rem 0.5rem 0 0' }}
                   />
                 </div>
                 <div className="news-content">
                   <h4>Semana de Ciencia</h4>
-                  <p>Exposición de proyectos STEAM del 14 al 18 de octubre.</p>
+                  <p>Exposición de proyectos elborados por los estudiantes del nievel diversificado,
+                    del 14 al 18 de octubre.</p>
                 </div>
               </article>
               <article className="news-item">
                 <div className="news-image">
                   <img
-                      src="https://images.unsplash.com/photo-1562774053-701939374585?w=400&h=200&fit=crop&crop=center"
+                      src="/src/imagenes/centro.jpg"
                       alt="Instalaciones del colegio"
                       style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '0.5rem 0.5rem 0 0' }}
                   />
                 </div>
                 <div className="news-content">
-                  <h4>Open House</h4>
+                  <h4>presentación</h4>
                   <p>Conoce nuestras instalaciones y equipo docente - 26 de octubre.</p>
                 </div>
               </article>
               <article className="news-item">
                 <div className="news-image">
                   <img
-                      src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=400&h=200&fit=crop&crop=center"
+                      src="/src/imagenes/campeonato.jpg"
                       alt="Campeonato deportivo"
                       style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '0.5rem 0.5rem 0 0' }}
                   />
                 </div>
                 <div className="news-content">
                   <h4>Campeonato Intercolegial</h4>
-                  <p>Felicitaciones al equipo por su destacada participación.</p>
+                  <p>Felicitaciones al equipo por su destacada participación en los juegos inter-colegiales.</p>
                 </div>
               </article>
             </div>
@@ -193,8 +184,8 @@ export default function HomePage() {
             <div>
               <h2 className="section-title">Contacto</h2>
               <ul className="contact-list">
-                <li>📍 5a. Avenida 10-25, Zona 1, Ciudad</li>
-                <li>☎️ (502) 5555-5555</li>
+                <li>📍 San Pedro Sacatepequez, Guatemala</li>
+                <li>☎️ (502) 1234 5678</li>
                 <li>✉️ admisiones@futureacademy.edu</li>
                 <li>🕘 Lun-Vie: 7:00-15:00</li>
               </ul>
