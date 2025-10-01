@@ -32,20 +32,20 @@ const DashboardLayout: React.FC = () => {
                 aria-hidden={!sidebarOpen}
                 aria-label="Barra lateral de navegación"
             >
-                <div className="dash-brand">🎓 Future Academy</div>
+                <div className="dash-brand">Future Academy</div>
 
                 <nav className="dash-nav" aria-label="Secciones del panel">
                     <NavLink to="clases" onClick={closeSidebar}>
-                        📚 Mis Clases
+                        *Mis Clases
                     </NavLink>
                     <NavLink to="inscripciones" onClick={closeSidebar}>
-                        ➕ Inscripciones
+                        *Inscripciones
                     </NavLink>
                     <NavLink to="notas" onClick={closeSidebar}>
-                        📊 Mis Notas
+                         *Mis Notas
                     </NavLink>
                     <NavLink to="tareas" onClick={closeSidebar}>
-                        📝 Mis Tareas
+                        *Mis Tareas
                     </NavLink>
                 </nav>
             </aside>
