@@ -29,9 +29,9 @@ export default function NotasPage() {
         : 0;
 
     const getNotaColor = (nota: number) => {
-        if (nota >= 90) return '#ffffff'; // blanco
-        if (nota >= 80) return '#000000'; // negro
-        if (nota >= 70) return '#212223'; // Amarillo
+        if (nota >= 90) return '#130f0f'; // blanco
+        if (nota >= 80) return 'rgba(15,42,16,0.8)'; // negro
+        if (nota >= 70) return 'rgb(23,3,3)'; // Amarillo
         return '#ef4444'; // Rojo
     };
 

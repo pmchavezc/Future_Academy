@@ -13,11 +13,12 @@
 .brand { display: flex; gap: .75rem; align-items: center; }
 .brand-logo { font-size: 1.7rem; }
 .brand-name { font-weight: 700; font-size: 1.1rem; }
-.brand-sub { font-size: .85rem; color: var(--muted); }
+.brand-sub { font-size: .85rem; color: black; }
 
 .nav { display: flex; gap: .75rem; align-items: center; }
 .nav a { padding: .5rem .75rem; border-radius: .5rem; white-space: nowrap; }
-.nav a:hover { background: var(--muted); }
+/*cambio de color dentro de los btn de navegacion programas, mivison y vision, noticias*/
+.nav a:hover { background: gray; }
 
 /* Hero section responsive */
 .hero {
@@ -42,7 +43,7 @@
 }
 
 .hero-copy p {
-    color: var(--muted);
+    color: black;
     font-size: clamp(0.9rem, 2.5vw, 1.1rem);
     margin-bottom: 1.5rem;
 }
@@ -97,7 +98,7 @@
 
 .contact-list li {
     padding: 0.5rem 0;
-    border-bottom: 1px solid var(--soft);
+    border-bottom: 1px solid black;
 }
 
 .contact-form label {
@@ -109,7 +110,7 @@
 .contact-form input, .contact-form textarea {
     background: #ffffff;
     border: 1px solid #130f10;
-    color: var(--text);
+    color: black;
     border-radius: .6rem;
     padding: .7rem .8rem;
     outline: none;
