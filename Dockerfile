@@ -1,21 +1,27 @@
-# --------- build (JDK 22) ---------
-FROM maven:3.9.9-eclipse-temurin-22 AS build
+# Etapa 1: Build (CONSTRUCCIÓN)
+# Usamos una imagen de Temurin (JDK) con Maven preinstalado, que es más común.
+# Si esta falla, usar la alternativa de OpenJDK-22-jdk.
+FROM maven:3.9.6-eclipse-temurin-22 AS build
 WORKDIR /app
 
+# Copia los archivos necesarios
 COPY pom.xml .
-RUN mvn -q -DskipTests dependency:go-offline
-
+RUN mvn dependency:go-offline # Descarga dependencias para cachear
 COPY src ./src
+RUN mvn clean package -DskipTests
 
-# Fuerza UTF-8 por si algún archivo quedó en otra codificación
-ENV MAVEN_OPTS="-Dfile.encoding=UTF-8"
-RUN mvn -q clean package -DskipTests -Dproject.build.sourceEncoding=UTF-8
-
-# --------- runtime (JRE 22) ---------
+# Etapa 2: Runtime (EJECUCIÓN)
+# Usamos la imagen Temurin JRE Alpine. Esta combinación (JRE + Alpine) es ideal para la ejecución.
 FROM eclipse-temurin:22-jre-alpine
 WORKDIR /app
-RUN addgroup -S app && adduser -S app -G app
+
+# Copia solo el JAR generado desde la etapa 'build'
 COPY --from=build /app/target/*.jar /app/app.jar
+
 EXPOSE 8080
-USER app
-ENTRYPOINT ["java","-jar","/app/app.jar"]
+
+# Quita el USER por ahora para evitar problemas si no existe.
+# Si el build funciona, puedes agregarlo después de investigar el usuario de la imagen base.
+# USER appuser
+
+CMD ["java", "-jar", "/app/app.jar"]

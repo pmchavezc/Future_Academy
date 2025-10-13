@@ -1,0 +1,25 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    networks:
+      default:
+        aliases:
+          - frontend
+  backend:
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    networks:
+      default:
+        aliases:
+          - api
+networks:
+  default:
+    driver: bridge
+
