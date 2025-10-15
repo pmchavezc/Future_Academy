@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/home.css";
+import logo from '../assets/imagenes/logotipo.jpg';
+import basicos from '../assets/imagenes/basicos.jpg';
+import diversificados from '../assets/imagenes/diversificados.jpg';
+import maestros from '../assets/imagenes/maestros.jpg';
+import laboratorios from '../assets/imagenes/laboratorios.jpg';
+import comunidadEstudiantil from '../assets/imagenes/comunidad_estudiantil.jpg';
+import cienciaEstudiantil from '../assets/imagenes/ciencia_estudiantil.jpg';
+import centro from '../assets/imagenes/centro.jpg';
+import campeonato from '../assets/imagenes/campeonato.jpg';
 
 export default function HomePage() {
   const [form, setForm] = useState({ nombre: "", email: "", mensaje: "" });
@@ -17,7 +26,7 @@ export default function HomePage() {
         <header className="site-header">
           <div className="container header-inner">
             <div className="brand">
-              <div className="brand-logo" aria-hidden>  <img src="src/imagenes/logotipo.jpg"  height={60}  className="h-8 w-auto" /></div>
+              <div className="brand-logo" aria-hidden>  <img src={logo}  height={60}  className="h-8 w-auto" /></div>
               <div>
                 <div className="brand-name">Future Academy</div>
                 <div className="brand-sub">Formando líderes con valores</div>
@@ -52,11 +61,8 @@ export default function HomePage() {
             <div className="grid cards">
               <article className="card">
                 <div className="program-image">
-                  <img
-                      src="/src/imagenes/basicos.jpg"
-                      alt="Estudiantes de básicos en clase"
-                      style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.5rem' }}
-                  />
+                  <img src={basicos} alt="Estudiantes de básicos en clase"
+                      style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.5rem' }} />
                 </div>
                 <div className="card-content">
                   <h3>Básicos</h3>
@@ -65,11 +71,8 @@ export default function HomePage() {
               </article>
               <article className="card">
                 <div className="program-image">
-                  <img
-                      src="/src/imagenes/diversificados.jpg"
-                      alt="Estudiantes de diversificado"
-                      style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.5rem' }}
-                  />
+                  <img src={diversificados} alt="Estudiantes de diversificado"
+                      style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.5rem' }} />
                 </div>
                 <div className="card-content">
                   <h3>Diversificado</h3>
@@ -111,17 +114,17 @@ export default function HomePage() {
             <h2 className="section-title">¿Por qué elegirnos?</h2>
             <div className="grid features">
               <div className="feature">
-                <img src="/src/imagenes/maestros.jpg"/>
+                <img src={maestros}/>
                 <h4>Docentes comprometidos</h4>
                 <p>Acompañamiento cercano y actualización pedagógica constante.</p>
               </div>
               <div className="feature">
-                <img src="/src/imagenes/laboratorios.jpg"/>
+                <img src={laboratorios}/>
                 <h4>Laboratorios y tecnología</h4>
                 <p>Espacios de ciencias, robótica y aulas digitales.</p>
               </div>
               <div className="feature">
-                <img src="/src/imagenes/comunidad_estudiantil.jpg"/>
+                <img src={comunidadEstudiantil}/>
                 <h4>Comunidad y valores</h4>
                 <p>Proyectos solidarios, deportes y artes para crecer en equipo.</p>
               </div>
@@ -136,11 +139,8 @@ export default function HomePage() {
             <div className="grid news">
               <article className="news-item">
                 <div className="news-image">
-                  <img
-                      src="/src/imagenes/ciencia_estudiantil.jpg"
-                      alt="Feria de ciencias"
-                      style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '0.5rem 0.5rem 0 0' }}
-                  />
+                  <img src={cienciaEstudiantil} alt="Feria de ciencias"
+                      style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '0.5rem 0.5rem 0 0' }} />
                 </div>
                 <div className="news-content">
                   <h4>Semana de Ciencia</h4>
@@ -150,11 +150,8 @@ export default function HomePage() {
               </article>
               <article className="news-item">
                 <div className="news-image">
-                  <img
-                      src="/src/imagenes/centro.jpg"
-                      alt="Instalaciones del colegio"
-                      style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '0.5rem 0.5rem 0 0' }}
-                  />
+                  <img src={centro} alt="Instalaciones del colegio"
+                      style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '0.5rem 0.5rem 0 0' }} />
                 </div>
                 <div className="news-content">
                   <h4>presentación</h4>
@@ -163,11 +160,8 @@ export default function HomePage() {
               </article>
               <article className="news-item">
                 <div className="news-image">
-                  <img
-                      src="/src/imagenes/campeonato.jpg"
-                      alt="Campeonato deportivo"
-                      style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '0.5rem 0.5rem 0 0' }}
-                  />
+                  <img src={campeonato} alt="Campeonato deportivo"
+                      style={{ width: '100%', height: '150px', objectFit: 'cover', borderRadius: '0.5rem 0.5rem 0 0' }} />
                 </div>
                 <div className="news-content">
                   <h4>Campeonato Intercolegial</h4>

@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import HomePage from './pages/HomePage';
+import HomePage from './pages/HomePage'; // Tu componente de inicio
 import LoginPage from './pages/LoginPage';
 import { AuthProvider } from './store/auth';
 import ProtectedRoute from './routes/ProtectedRoute';
@@ -13,13 +13,19 @@ export default function App() {
     return (
         <AuthProvider>
             <Routes>
-                {/* Públicas */}
+                {/* 1. RUTA RAÍZ: La HomePage se renderiza cuando la URL es /#/ o solo / */}
+                {/* Si la página sigue en blanco, el problema es que HomePage no se está renderizando,
+                   y debe ser corregido en el componente mismo.
+                */}
                 <Route path="/" element={<HomePage />} />
+
+                {/* 2. Login Page */}
                 <Route path="/login" element={<LoginPage />} />
 
-                {/* Protegidas */}
+                {/* Rutas Protegidas */}
                 <Route element={<ProtectedRoute />}>
                     <Route path="/app" element={<DashboardLayout />}>
+                        {/* Redirección interna dentro del layout */}
                         <Route index element={<Navigate to="clases" replace />} />
                         <Route path="clases" element={<ClasesPage />} />
                         <Route path="inscripciones" element={<InscripcionesPage />} />
@@ -28,8 +34,11 @@ export default function App() {
                     </Route>
                 </Route>
 
-                {/* 404 */}
-                <Route path="*" element={<Navigate to="/" replace />} />
+                {/* 🚨 3. RUTA 404 (CLAVE) 🚨 */}
+                {/* Si no se encuentra ninguna ruta, NO redirige a /, sino a una ruta definida como /login.
+                   Esto evita el bucle de redirección en GitHub Pages.
+                */}
+                <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>
         </AuthProvider>
     );
