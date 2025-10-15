@@ -1,8 +1,11 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  base: '/',             // 👈 EN RENDER debe ser raíz
+  base: '/', // Rutas absolutas para producción
   plugins: [react()],
-  build: { outDir: 'dist' }
-})
+  build: {
+    outDir: 'dist',
+    emptyOutDir: true // Limpia la carpeta dist antes de cada build
+  }
+});

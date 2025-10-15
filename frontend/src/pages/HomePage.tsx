@@ -33,9 +33,9 @@ export default function HomePage() {
               </div>
             </div>
             <nav className="nav">
-              <a href="#programas">Programas</a>
-              <a href="#mision-vision">Misión & Visión</a>
-              <a href="#noticias">Noticias</a>
+              <a href="#programas" className="btn btn-sm">Programas</a>
+              <a href="#mision-vision" className="btn btn-sm">Misión & Visión</a>
+              <a href="#noticias" className="btn btn-sm">Noticias</a>
               <Link to="/login" className="btn btn-sm">Portal Estudiantil</Link>
             </nav>
           </div>
