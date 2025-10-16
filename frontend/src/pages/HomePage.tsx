@@ -33,9 +33,9 @@ export default function HomePage() {
               </div>
             </div>
             <nav className="nav">
-              <a href="#programas" className="btn btn-sm">Programas</a>
-              <a href="#mision-vision" className="btn btn-sm">Misión & Visión</a>
-              <a href="#noticias" className="btn btn-sm">Noticias</a>
+              <button className="btn btn-sm" onClick={() => document.getElementById('programas')?.scrollIntoView({ behavior: 'smooth' })}>Programas</button>
+              <button className="btn btn-sm" onClick={() => document.getElementById('mision-vision')?.scrollIntoView({ behavior: 'smooth' })}>Misión & Visión</button>
+              <button className="btn btn-sm" onClick={() => document.getElementById('noticias')?.scrollIntoView({ behavior: 'smooth' })}>Noticias</button>
               <Link to="/login" className="btn btn-sm">Portal Estudiantil</Link>
             </nav>
           </div>

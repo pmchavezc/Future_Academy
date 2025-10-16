@@ -2,6 +2,7 @@ import {type FormEvent, useState } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../store/auth';
 import '../styles/home.css';
+import '../styles/login.css';
 
 export default function LoginPage() {
     const { login, loading, error } = useAuth();

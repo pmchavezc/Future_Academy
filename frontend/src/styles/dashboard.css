@@ -1,23 +1,16 @@
+/* Reset y variables globales para el dashboard */
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; }
 body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
 
-/* Variables esperadas (usa tus colores del tema) */
-/*
-:root{
-  --text:#e5e7eb; --soft:#1f2937; --primary:#22d3ee;
-  --panel:#0b1220; --card:#0e1526;
-}
-*/
-
-/* ===== Layout base ===== */
+/* Layout principal del dashboard */
 .dash-shell {
     display: grid;
-    grid-template-columns: 260px 1fr;   /* Sidebar razonable en desktop */
+    grid-template-columns: 260px 1fr;
     min-height: 100dvh;
 }
 
-/* ===== Sidebar ===== */
+/* Sidebar del dashboard */
 .dash-aside {
     background: radial-gradient(1200px 600px at 10% 10%, rgb(160, 162, 146), transparent 60%),
     radial-gradient(1200px 600px at 90% 10%, rgb(79, 70, 64), transparent 60%),
@@ -30,29 +23,23 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
     overflow-y: auto;
     color: black;
 }
-
 .dash-brand {
     font-weight: 800;
     margin-bottom: 1rem;
     font-size: 1.1rem;
     text-align: center;
 }
-
 .dash-nav { display: grid; gap: .35rem; }
-
-
 .dash-nav a.active {
     background: white;
     color: #a6a2a2;
     border-left: 3px #313331;
 }
-
-/*para darle color a los btn dentro del dashboard*/
 .dash-nav a:hover:not(.active) {
     background: rgb(255, 255, 255);
 }
 
-/* ===== Main + Topbar ===== */
+/* Main y barra superior */
 .dash-main {
     display: grid;
     grid-template-rows: auto 1fr;
@@ -61,26 +48,23 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
     radial-gradient(1200px 600px at 90% 10%, rgb(183, 148, 123), transparent 60%),
     linear-gradient(180deg, #a2adc2 0%, #4f5a6e 60%, #131c2d 100%);
 }
-
 .dash-topbar {
     display: flex;
     align-items: center;
     gap: .75rem;
-    padding: .75rem clamp(12px, 3vw, 32px); /* en vez de 10rem */
+    padding: .75rem clamp(12px, 3vw, 32px);
     border-bottom: 1px solid #857d7d;
     background: radial-gradient(1200px 600px at 10% 10%, rgb(153, 161, 95), transparent 60%),
     radial-gradient(1200px 600px at 90% 10%, rgb(121, 91, 69), transparent 60%),
     linear-gradient(180deg, #fa182f 0%, #f30f33 60%, #fc0133 100%);
-    flex-wrap: wrap; /* evita desbordes en móvil */
+    flex-wrap: wrap;
 }
-
 .dash-title {
     font-size: clamp(1rem, 2.2vw, 1.5rem);
     font-weight: 700;
     margin: 0;
     color: black;
 }
-
 .dash-user {
     display: flex;
     align-items: center;
@@ -88,7 +72,6 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
     flex-wrap: wrap;
     color: black;
 }
-
 .chip {
     display: inline-block;
     background: #decdcd;
@@ -96,21 +79,17 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
     border-radius: 999px;
     font-size: 0.875rem;
 }
-
 .spacer { flex: 1; }
 
+/* Contenido principal del dashboard */
 .dash-content {
     padding: clamp(12px, 2.5vw, 24px);
     overflow-x: auto;
     max-width: 1200px;
     margin: 0 auto;
-    width: 100%;         /* importante: no uses 50dvw */
+    width: 100%;
     color: black;
 }
-
-/* ===== Componentes comunes ===== */
-
-/* Títulos dentro del contenido (si los usas) */
 .dash-content h2 {
     text-align: center;
     margin-bottom: 2rem;
@@ -118,7 +97,7 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
     font-size: 1.75rem;
 }
 
-/* Cards responsive */
+/* Cards y tablas */
 .cards-3 {
     display: grid;
     gap: 1.5rem;
@@ -128,32 +107,25 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
     margin: 0 auto;
     padding: 0 1rem;
 }
-
-/* Tabla responsive */
 .tbl {
     width: 100%;
     border-collapse: collapse;
-    background: var(--card);
+    background: #0e1526;
     border: 1px solid #ffffff;
     border-radius: .8rem;
     overflow: hidden;
     font-size: 0.9rem;
 }
-
 .tbl th, .tbl td {
     padding: .7rem .5rem;
     border-bottom: 1px solid #170303;
     text-align: left;
 }
-
 .tbl thead th {
     background: #7a7a7e;
     font-weight: 600;
 }
-
 .tbl tfoot td { font-weight: 700; }
-
-/* Tabla wrapper para scroll horizontal */
 .table-wrapper {
     overflow-x: auto;
     margin: 2rem 0;
@@ -161,21 +133,19 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
     display: flex;
     justify-content: center;
 }
-
 .table-wrapper .tbl {
     min-width: 600px;
     width: 100%;
     max-width: 800px;
 }
 
-/* Lista responsive */
+/* Listas y badges */
 .list {
     display: grid;
     gap: 1rem;
     max-width: 900px;
     margin: 0 auto;
 }
-
 .list-item {
     display: grid;
     grid-template-columns: 1fr;
@@ -185,7 +155,6 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
     border-radius: .8rem;
     padding: .8rem;
 }
-
 .list-item-header {
     display: flex;
     justify-content: space-between;
@@ -193,27 +162,22 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
     gap: 0.5rem;
     flex-wrap: wrap;
 }
-
 .list-item-actions {
     display: flex;
     gap: 0.5rem;
     justify-content: flex-start;
     flex-wrap: wrap;
 }
-
 .badge {
     padding: .25rem .5rem;
     border-radius: .5rem;
     font-size: .85rem;
     white-space: nowrap;
 }
-
 .badge.ok { background: rgb(23, 3, 3); color: #b9e3c9; }
 .badge.warn { background: rgb(255, 255, 255); color: #130f10; }
 
-
-
-/* Botón hamburguesa para móvil */
+/* Botón hamburguesa y overlay para móvil */
 .menu-toggle {
     display: none;
     background: none;
@@ -223,8 +187,6 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
     cursor: pointer;
     padding: 0.25rem;
 }
-
-/* ===== Overlay móvil ===== */
 .dash-overlay {
     position: fixed;
     inset: 0;
@@ -232,104 +194,35 @@ body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial
     z-index: 999;
     display: none;
 }
-
 .dash-overlay.show { display: block; }
 
-/* ===== Mobile (<= 767px) ===== */
+/* Responsive: móvil y tablet */
 @media (max-width: 767px) {
     .menu-toggle { display: block; }
-
-    .dash-shell {
-        grid-template-columns: 1fr;
-        position: relative;
-    }
-
+    .dash-shell { grid-template-columns: 1fr; position: relative; }
     .dash-aside {
         position: fixed;
         top: 0;
-        left: -260px; /* oculto */
+        left: -260px;
         width: 260px;
         height: 100vh;
         z-index: 1000;
         transition: left .3s ease;
     }
     .dash-aside.open { left: 0; }
-
     .dash-main { width: 100%; }
-
-    .dash-topbar {
-        padding: .75rem .5rem;
-        gap: .5rem;
-    }
-
-    .dash-user {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
+    .dash-topbar { padding: .75rem .5rem; gap: .5rem; }
+    .dash-user { flex-direction: column; align-items: flex-start; }
     .dash-user small { font-size: .75rem; }
-
-    .dash-content {
-        padding: 1rem;
-        text-align: center; /* opcional */
-    }
-
-    .dash-content h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
-    }
-
+    .dash-content { padding: 1rem; text-align: center; }
+    .dash-content h2 { font-size: 1.5rem; margin-bottom: 1.5rem; }
     .cards-3 { grid-template-columns: 1fr; }
-
     .tbl { font-size: 0.8rem; }
     .tbl th, .tbl td { padding: 0.5rem 0.25rem; }
-
     .list-item { padding: 0.75rem; }
-    .list-item-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .list-item-actions {
-        width: 100%;
-        justify-content: space-between;
-    }
+    .list-item-header { flex-direction: column; align-items: flex-start; }
+    .list-item-actions { width: 100%; justify-content: space-between; }
 }
-
-/* ===== Tablet (768px–1023px) ===== */
 @media (min-width: 768px) and (max-width: 1023px) {
     .dash-shell { grid-template-columns: 220px 1fr; }
-    .dash-aside { width: 220px; padding: 0.75rem; }
-    .dash-brand { font-size: 1rem; }
-    .dash-nav a { padding: 0.5rem; font-size: 0.9rem; }
-
-    .cards-3 {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
-    }
-
-    .list-item {
-        grid-template-columns: 1fr auto auto;
-        align-items: center;
-    }
-}
-
-/* ===== Desktop (>= 1024px) ===== */
-@media (min-width: 1024px) {
-    .cards-3 {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-    }
-
-    .list-item {
-        grid-template-columns: 1fr auto auto;
-        align-items: center;
-    }
-}
-
-/* ===== Desktop grande (>= 1400px) ===== */
-@media (min-width: 1400px) {
-    .cards-3 {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 1200px;
-    }
 }
